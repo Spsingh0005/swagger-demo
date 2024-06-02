@@ -18,6 +18,11 @@ mongoose
     console.log(err);
   });
 
+// Adding favicon path
+app.get("/favicon.ico", (req, res) => res.status(204));
+
+
+
 // Adding Swagger Annotation for users
 /**
  * @swagger
@@ -43,7 +48,7 @@ app.get("/users", async (req, res) => {
 });
 
 // Adding Swagger Annotation for products
-/**
+// /**
  * @swagger
  * /products:
  *      get:
@@ -55,31 +60,29 @@ app.get("/users", async (req, res) => {
  *                  name:
  *                     type:string
  */
-app.get("/products", async (req, res) => {
-  try {
-    const products = await Products.find();
-    res.json(products);
-  } catch (err) {
-    console.error("Error fetching products:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+// app.get("/products", async (req, res) => {
+//   try {
+//     const products = await Products.find();
+//     res.json(products);
+//   } catch (err) {
+//     console.error("Error fetching products:", err);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
 
-// Adding favicon path
-app.get("/favicon.ico", (req, res) => res.status(204));
+// app.post("/users", async (req, res) => {
+//   const user = {
+//     name: "Tom hanks",
+//   };
 
-app.post("/users", async (req, res) => {
-  const user = {
-    name: "Tom hanks",
-  };
-
-  Users.create(user);
-});
+//   Users.create(user);
+// });
 
 // Integration of swagger with express js
 // Serve swagger UI
 
 app.use("/", swaggerUi.serve, swaggerUi.setup(specs));
+
 
 // Starting server
 const PORT = process.env.PORT || 8000;
