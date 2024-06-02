@@ -33,6 +33,10 @@ const options = {
         name: "Products",
         description: "Operations related to products",
       },
+      {
+        name: "Auth",
+        description: "Signup functionality",
+      },
     ],
   },
   apis: ["./app.js"], // Adjust this to include all files where APIs are defined
