@@ -6,7 +6,10 @@ const Users = require("./models/model");
 const Products = require("./models/productsModel");
 const path = require("path");
 const User = require("./models/userSchema");
+const bodyParser = require("body-parser");
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 // Mongoose connection string with password
 mongoose
   .connect(
@@ -64,11 +67,12 @@ app.get("/users", async (req, res) => {
  * /signup:
  *  post:
  *    summary: User Signup
- *    tags:[Auth]
+ *    tags:
+ *     - Auth
  *    requestBody:
  *      required: true
  *      content:
- *        application/json
+ *        application/json:
  *          schema:
  *            type: object
  *            required:
@@ -87,18 +91,22 @@ app.get("/users", async (req, res) => {
  *    500:
  *      description: Internal server error
  */
-
 app.post("/signup", async (req, res) => {
-  const { username, password } = req.body;
+  const username = req.body.username;
+  const password = req.body.password;
 
   try {
-    const existingUser = await Users.findOne({ username });
+    // const existingUser = await Users.findOne({ username });
 
-    if (existingUser) {
-      return res.status(400).json({ message: "User already exist" });
-    }
+    // if (existingUser) {
+    //   return res.status(400).json({ message: "User already exist" });
+    // }
     const newUser = new User({ username, password });
-    await newUser.save();
+    await newUser.save(); // This is the save command
+    res.json({
+      message: "User created successfully",
+      newUser,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
