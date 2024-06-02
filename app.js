@@ -1,5 +1,5 @@
 const express = require("express");
-const { specs, swaggerUi } = require("./swagger");
+const { specs, swaggerUi,swaggerUiOptions } = require("./swagger");
 const app = express();
 const mongoose = require("mongoose");
 const Users = require("./models/model");
@@ -83,7 +83,7 @@ app.get("/users", async (req, res) => {
 // Integration of swagger with express js
 // Serve swagger UI
 
-app.use("/", swaggerUi.serve, swaggerUi.setup(specs));
+app.use("/", swaggerUi.serve, swaggerUi.setup(specs,swaggerUiOptions));
 
 
 // Starting server

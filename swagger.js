@@ -32,9 +32,15 @@ const options = {
   },
 };
 
+const swaggerUiOptions = {
+  customCss: ".swagger-ui .topbar { display: none }",
+  customSiteTitle: "My Custom API Docs",
+  customfavIcon: "/favicon.ico", // Path to your custom favicon relative to the public directory
+};
+
 // Passing options inside swagger docs
 const specs = swaggerJsdoc(options);
 
 // Exporting swagger specs and swaggerUi
 
-module.exports = { specs, swaggerUi };
+module.exports = { specs, swaggerUi, swaggerUiOptions };
