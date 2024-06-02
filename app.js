@@ -18,6 +18,8 @@ mongoose
     console.log(err);
   });
 
+  app.use(express.static(path.join(__dirname, 'public')));
+
 // Adding favicon path
 app.get("/favicon.ico", (req, res) => res.status(204));
 
