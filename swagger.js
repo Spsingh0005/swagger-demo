@@ -21,7 +21,7 @@ const options = {
     servers: [
       {
         url: "https://swagger-demo-c1ff09885b2a.herokuapp.com/", // Update with your server URL
-        description: "Local server",
+        description: "Heroku server",
       },
     ],
     tags: [

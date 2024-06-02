@@ -6,9 +6,6 @@ const Users = require("./models/model");
 const Products = require("./models/productsModel");
 const path = require("path");
 
-// Serve Swagger UI
-app.use("/", swaggerUi.serve, swaggerUi.setup(specs, swaggerUiOptions));
-
 // Mongoose connection string with password
 mongoose
   .connect(
@@ -62,7 +59,6 @@ app.get("/users", async (req, res) => {
 });
 
 // Integration of swagger with express js
-// Serve swagger UI
 
 // Serve Swagger UI
 app.use("/", swaggerUi.serve, swaggerUi.setup(specs, swaggerUiOptions));
