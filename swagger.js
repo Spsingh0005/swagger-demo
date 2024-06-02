@@ -13,12 +13,17 @@ const options = {
       version: "1.0.0",
       description: "This is the custom API documentation description.",
       contact: {
-        name: "Robin",
+        name: "Your Name",
         url: "https://your-website.com",
         email: "your-email@domain.com",
       },
     },
-
+    servers: [
+      {
+        url: "https://swagger-demo-c1ff09885b2a.herokuapp.com/", // Update with your server URL
+        description: "Local server",
+      },
+    ],
     tags: [
       {
         name: "Users",
