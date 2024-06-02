@@ -1,4 +1,6 @@
-const users = [
+{
+
+ "users" : [
   {
     "username": "john_doe",
     "email": "john.doe@example.com",
@@ -46,7 +48,7 @@ const users = [
   }
 ]
 
-const flights = [
+, "flights" : [
   {
     "flightNumber": "AA123",
     "airline": "American Airlines",
@@ -104,7 +106,7 @@ const flights = [
   }
 ]
 
-const hotels = [
+, "hotels" : [
   {
     "hotelId": "HTL001",
     "name": "Grand Plaza Hotel",
@@ -157,7 +159,7 @@ const hotels = [
   }
 ]
 
-const activities = [
+, "activities" : [
   {
     "activityId": "ACT001",
     "name": "Statue of Liberty Tour",
@@ -205,7 +207,7 @@ const activities = [
   }
 ]
 
-const bookings = [
+, "bookings" : [
   {
     "bookingId": "BKG001",
     "userId": "USR001",
@@ -267,8 +269,8 @@ const bookings = [
     "status": "confirmed"
   }
 ]
-
-const cities = [
+,
+ "cities" : [
   {
     "cityId": "CITY001",
     "name": "New York",
@@ -316,3 +318,5 @@ const cities = [
   }
 ]
 
+
+}

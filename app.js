@@ -15,6 +15,13 @@ app.get("/favicon.ico", (req, res) => res.status(204));
 
 app.use(express.static(path.join(__dirname, "public")));
 
+// Import route files
+const userRoutes = require("./routes/user.route");
+const flightRoutes = require("./routes/flight.route");
+const hotelRoutes = require("./routes/hotel.route");
+const activityRoutes = require("./routes/activity.route");
+const bookingRoutes = require("./routes/booking.route");
+
 // Swagger annotation for the GET /users endpoint
 /**
  * @swagger
@@ -149,6 +156,12 @@ app.get("/users/:id", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
+app.use("/api/users", userRoutes);
+app.use("/api/flights", flightRoutes);
+app.use("/api/hotels", hotelRoutes);
+app.use("/api/activities", activityRoutes);
+app.use("/api/bookings", bookingRoutes);
 
 // Integration of swagger with express js
 
