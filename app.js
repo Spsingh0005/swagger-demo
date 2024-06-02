@@ -3,6 +3,7 @@ const { specs, swaggerUi } = require("./swagger");
 const app = express();
 const mongoose = require("mongoose");
 const Users = require("./models/model");
+const Products = require("./models/productsModel");
 
 // Mongoose connection string with password
 //
@@ -17,12 +18,13 @@ mongoose
     console.log(err);
   });
 
-// Adding Swagger Annotation
+// Adding Swagger Annotation for users
 /**
  * @swagger
  * /users:
  *      get:
- *          summary: Get a list of users
+ *          tags:
+ *            - Users
  *          responses:
  *              '200':
  *                  name:
@@ -39,6 +41,31 @@ app.get("/users", async (req, res) => {
     res.json({ error });
   }
 });
+
+// Adding Swagger Annotation for products
+/**
+ * @swagger
+ * /products:
+ *      get:
+ *         summary: Get a list of products
+ *         tags:
+ *          - Products
+ *          responses:
+ *              '200':
+ *                  name:
+ *                     type:string
+ */
+app.get("/products", async (req, res) => {
+  try {
+    const products = await Products.find();
+    res.json(products);
+  } catch (err) {
+    console.error("Error fetching products:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Adding favicon path
 app.get("/favicon.ico", (req, res) => res.status(204));
 
 app.post("/users", async (req, res) => {

@@ -7,12 +7,29 @@ const swaggerUi = require("swagger-ui-express");
 const options = {
   swaggerDefinition: {
     info: {
-      title: "Swagger Demo Api",
+      title: "Swagger Demo APIs",
       version: "1.0.0",
+
       description: "This is a testing application by using swagger.",
+
+      contact: {
+        name: "Robin",
+        url: "https://your-website.com",
+        email: "your-email@domain.com",
+      },
+      tags: [
+        {
+          name: "Users",
+          description: "Operations related to users",
+        },
+        {
+          name: "Products",
+          description: "Operations related to products",
+        },
+      ],
     },
+    apis: ["app.js"],
   },
-  apis: ["app.js"],
 };
 
 // Passing options inside swagger docs
