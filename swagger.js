@@ -13,17 +13,12 @@ const options = {
       version: "1.0.0",
       description: "This is the custom API documentation description.",
       contact: {
-        name: "Your Name",
+        name: "Robin",
         url: "https://your-website.com",
         email: "your-email@domain.com",
       },
     },
-    servers: [
-      {
-        url: "http://localhost:3000", // Update with your server URL
-        description: "Local server",
-      },
-    ],
+
     tags: [
       {
         name: "Users",
