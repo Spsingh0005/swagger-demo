@@ -1,0 +1,318 @@
+const users = [
+  {
+    "username": "john_doe",
+    "email": "john.doe@example.com",
+    "password": "commonpassword",
+    "firstName": "John",
+    "lastName": "Doe",
+    "age": 30,
+    "gender": "male"
+  },
+  {
+    "username": "jane_smith",
+    "email": "jane.smith@example.com",
+    "password": "commonpassword",
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "age": 25,
+    "gender": "female"
+  },
+  {
+    "username": "mike_jackson",
+    "email": "mike.jackson@example.com",
+    "password": "commonpassword",
+    "firstName": "Mike",
+    "lastName": "Jackson",
+    "age": 35,
+    "gender": "male"
+  },
+  {
+    "username": "alice_jones",
+    "email": "alice.jones@example.com",
+    "password": "commonpassword",
+    "firstName": "Alice",
+    "lastName": "Jones",
+    "age": 28,
+    "gender": "female"
+  },
+  {
+    "username": "bob_brown",
+    "email": "bob.brown@example.com",
+    "password": "commonpassword",
+    "firstName": "Bob",
+    "lastName": "Brown",
+    "age": 40,
+    "gender": "male"
+  }
+]
+
+const flights = [
+  {
+    "flightNumber": "AA123",
+    "airline": "American Airlines",
+    "departureAirport": "JFK",
+    "arrivalAirport": "LAX",
+    "departureTime": "2024-06-15T08:00:00Z",
+    "arrivalTime": "2024-06-15T11:00:00Z",
+    "duration": 6,
+    "price": 350,
+    "seatsAvailable": 50
+  },
+  {
+    "flightNumber": "DL456",
+    "airline": "Delta Airlines",
+    "departureAirport": "ATL",
+    "arrivalAirport": "ORD",
+    "departureTime": "2024-06-16T09:00:00Z",
+    "arrivalTime": "2024-06-16T11:30:00Z",
+    "duration": 3,
+    "price": 200,
+    "seatsAvailable": 75
+  },
+  {
+    "flightNumber": "UA789",
+    "airline": "United Airlines",
+    "departureAirport": "SFO",
+    "arrivalAirport": "MIA",
+    "departureTime": "2024-06-17T10:00:00Z",
+    "arrivalTime": "2024-06-17T18:00:00Z",
+    "duration": 8,
+    "price": 450,
+    "seatsAvailable": 100
+  },
+  {
+    "flightNumber": "SW123",
+    "airline": "Southwest Airlines",
+    "departureAirport": "DEN",
+    "arrivalAirport": "SEA",
+    "departureTime": "2024-06-18T11:00:00Z",
+    "arrivalTime": "2024-06-18T14:00:00Z",
+    "duration": 4,
+    "price": 300,
+    "seatsAvailable": 60
+  },
+  {
+    "flightNumber": "BA456",
+    "airline": "British Airways",
+    "departureAirport": "LHR",
+    "arrivalAirport": "JFK",
+    "departureTime": "2024-06-19T12:00:00Z",
+    "arrivalTime": "2024-06-19T15:00:00Z",
+    "duration": 7,
+    "price": 500,
+    "seatsAvailable": 80
+  }
+]
+
+const hotels = [
+  {
+    "hotelId": "HTL001",
+    "name": "Grand Plaza Hotel",
+    "location": "New York, NY",
+    "address": "123 5th Ave, New York, NY 10001",
+    "rating": 4.5,
+    "pricePerNight": 250,
+    "amenities": ["Free WiFi", "Breakfast Included", "Swimming Pool", "Fitness Center"],
+    "roomsAvailable": 20
+  },
+  {
+    "hotelId": "HTL002",
+    "name": "Ocean View Resort",
+    "location": "Miami, FL",
+    "address": "456 Ocean Dr, Miami Beach, FL 33139",
+    "rating": 4.7,
+    "pricePerNight": 300,
+    "amenities": ["Free WiFi", "Sea View", "Spa", "Beach Access"],
+    "roomsAvailable": 15
+  },
+  {
+    "hotelId": "HTL003",
+    "name": "Mountain Retreat",
+    "location": "Denver, CO",
+    "address": "789 Mountain Rd, Denver, CO 80203",
+    "rating": 4.3,
+    "pricePerNight": 200,
+    "amenities": ["Free WiFi", "Breakfast Included", "Hiking Trails", "Pet Friendly"],
+    "roomsAvailable": 10
+  },
+  {
+    "hotelId": "HTL004",
+    "name": "Urban Stay Hotel",
+    "location": "San Francisco, CA",
+    "address": "101 Market St, San Francisco, CA 94105",
+    "rating": 4.6,
+    "pricePerNight": 275,
+    "amenities": ["Free WiFi", "City View", "Rooftop Bar", "Fitness Center"],
+    "roomsAvailable": 25
+  },
+  {
+    "hotelId": "HTL005",
+    "name": "Luxury Palace",
+    "location": "Las Vegas, NV",
+    "address": "202 Strip Blvd, Las Vegas, NV 89109",
+    "rating": 4.8,
+    "pricePerNight": 350,
+    "amenities": ["Free WiFi", "Casino", "Poolside Bar", "Live Entertainment"],
+    "roomsAvailable": 30
+  }
+]
+
+const activities = [
+  {
+    "activityId": "ACT001",
+    "name": "Statue of Liberty Tour",
+    "location": "New York, NY",
+    "description": "A guided tour of the Statue of Liberty, including access to the pedestal and the museum.",
+    "duration": 3,
+    "price": 50,
+    "availability": ["2024-06-15", "2024-06-16", "2024-06-17"]
+  },
+  {
+    "activityId": "ACT002",
+    "name": "Miami Beach Jet Ski Rental",
+    "location": "Miami, FL",
+    "description": "Rent a jet ski and enjoy the beautiful waters of Miami Beach.",
+    "duration": 2,
+    "price": 100,
+    "availability": ["2024-06-15", "2024-06-16", "2024-06-18"]
+  },
+  {
+    "activityId": "ACT003",
+    "name": "Rocky Mountain Hiking Tour",
+    "location": "Denver, CO",
+    "description": "Join a guided hiking tour in the Rocky Mountains, suitable for all skill levels.",
+    "duration": 5,
+    "price": 75,
+    "availability": ["2024-06-16", "2024-06-17", "2024-06-19"]
+  },
+  {
+    "activityId": "ACT004",
+    "name": "San Francisco Bay Cruise",
+    "location": "San Francisco, CA",
+    "description": "Take a scenic cruise around the San Francisco Bay, including views of the Golden Gate Bridge.",
+    "duration": 2,
+    "price": 60,
+    "availability": ["2024-06-15", "2024-06-18", "2024-06-20"]
+  },
+  {
+    "activityId": "ACT005",
+    "name": "Las Vegas Show Tickets",
+    "location": "Las Vegas, NV",
+    "description": "Purchase tickets to a variety of live shows in Las Vegas, including magic, comedy, and music.",
+    "duration": 2,
+    "price": 120,
+    "availability": ["2024-06-17", "2024-06-18", "2024-06-19"]
+  }
+]
+
+const bookings = [
+  {
+    "bookingId": "BKG001",
+    "userId": "USR001",
+    "flightNumber": "AA123",
+    "hotelId": "HTL001",
+    "activityId": "ACT001",
+    "bookingDate": "2024-06-01T10:00:00Z",
+    "travelDate": "2024-06-15",
+    "returnDate": "2024-06-20",
+    "totalPrice": 1000,
+    "status": "confirmed"
+  },
+  {
+    "bookingId": "BKG002",
+    "userId": "USR002",
+    "flightNumber": "DL456",
+    "hotelId": "HTL002",
+    "activityId": "ACT002",
+    "bookingDate": "2024-06-02T11:00:00Z",
+    "travelDate": "2024-06-16",
+    "returnDate": "2024-06-21",
+    "totalPrice": 1200,
+    "status": "confirmed"
+  },
+  {
+    "bookingId": "BKG003",
+    "userId": "USR003",
+    "flightNumber": "UA789",
+    "hotelId": "HTL003",
+    "activityId": "ACT003",
+    "bookingDate": "2024-06-03T12:00:00Z",
+    "travelDate": "2024-06-17",
+    "returnDate": "2024-06-22",
+    "totalPrice": 1500,
+    "status": "pending"
+  },
+  {
+    "bookingId": "BKG004",
+    "userId": "USR004",
+    "flightNumber": "SW123",
+    "hotelId": "HTL004",
+    "activityId": "ACT004",
+    "bookingDate": "2024-06-04T13:00:00Z",
+    "travelDate": "2024-06-18",
+    "returnDate": "2024-06-23",
+    "totalPrice": 1300,
+    "status": "cancelled"
+  },
+  {
+    "bookingId": "BKG005",
+    "userId": "USR005",
+    "flightNumber": "BA456",
+    "hotelId": "HTL005",
+    "activityId": "ACT005",
+    "bookingDate": "2024-06-05T14:00:00Z",
+    "travelDate": "2024-06-19",
+    "returnDate": "2024-06-24",
+    "totalPrice": 1700,
+    "status": "confirmed"
+  }
+]
+
+const cities = [
+  {
+    "cityId": "CITY001",
+    "name": "New York",
+    "country": "USA",
+    "description": "Known as the Big Apple, New York City is a vibrant metropolis famous for its iconic landmarks such as Times Square, Central Park, and the Statue of Liberty.",
+    "popularAttractions": ["Statue of Liberty", "Central Park", "Times Square", "Empire State Building"],
+    "averageHotelPrice": 250,
+    "averageFlightPrice": 300
+  },
+  {
+    "cityId": "CITY002",
+    "name": "Miami",
+    "country": "USA",
+    "description": "Miami is a major city in Florida known for its beaches, nightlife, and cultural diversity.",
+    "popularAttractions": ["Miami Beach", "Art Deco District", "Little Havana", "Vizcaya Museum and Gardens"],
+    "averageHotelPrice": 200,
+    "averageFlightPrice": 250
+  },
+  {
+    "cityId": "CITY003",
+    "name": "Denver",
+    "country": "USA",
+    "description": "Denver, the capital of Colorado, is a vibrant city known for its outdoor activities, including hiking, skiing, and its proximity to the Rocky Mountains.",
+    "popularAttractions": ["Denver Botanic Gardens", "Red Rocks Park and Amphitheatre", "Denver Museum of Nature and Science", "Union Station"],
+    "averageHotelPrice": 180,
+    "averageFlightPrice": 220
+  },
+  {
+    "cityId": "CITY004",
+    "name": "San Francisco",
+    "country": "USA",
+    "description": "San Francisco, in northern California, is known for its hilly landscape, cable cars, the Golden Gate Bridge, and vibrant cultural scene.",
+    "popularAttractions": ["Golden Gate Bridge", "Alcatraz Island", "Fisherman's Wharf", "Chinatown"],
+    "averageHotelPrice": 270,
+    "averageFlightPrice": 320
+  },
+  {
+    "cityId": "CITY005",
+    "name": "Las Vegas",
+    "country": "USA",
+    "description": "Las Vegas, located in Nevada's Mojave Desert, is a resort city famed for its vibrant nightlife centered around 24-hour casinos and other entertainment options.",
+    "popularAttractions": ["The Strip", "Fremont Street", "Bellagio Fountains", "Red Rock Canyon"],
+    "averageHotelPrice": 230,
+    "averageFlightPrice": 280
+  }
+]
+

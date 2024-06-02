@@ -2,25 +2,13 @@ const express = require("express");
 const { specs, swaggerUi, swaggerUiOptions } = require("./swagger");
 const app = express();
 const mongoose = require("mongoose");
-const Users = require("./models/model");
-const Products = require("./models/productsModel");
+
 const path = require("path");
-const User = require("./models/userSchema");
+const User = require("./models/user.model");
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// Mongoose connection string with password
-mongoose
-  .connect(
-    "mongodb+srv://robinsingh199815:TydIYQpz1yiHQTEV@book-management-system.w4t4yqc.mongodb.net/Swagger-demo"
-  )
-  .then(() => {
-    console.log("Database connected successfully");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 // Ignore favicon requests if the file is not found
 app.get("/favicon.ico", (req, res) => res.status(204));
@@ -54,7 +42,7 @@ app.use(express.static(path.join(__dirname, "public")));
  */
 app.get("/users", async (req, res) => {
   try {
-    const users = await Users.find();
+    const users = await User.find();
     res.json(users);
   } catch (err) {
     console.error("Error fetching users:", err);
@@ -168,6 +156,8 @@ app.get("/users/:id", async (req, res) => {
 app.use("/", swaggerUi.serve, swaggerUi.setup(specs, swaggerUiOptions));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server running on ${PORT}`);
+// });
+
+module.exports = app;
