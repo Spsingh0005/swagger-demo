@@ -51,7 +51,8 @@ app.post("/users", async (req, res) => {
 
 // Integration of swagger with express js
 // Serve swagger UI
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+
+app.use("/", swaggerUi.serve, swaggerUi.setup(specs));
 
 // Starting server
 const PORT = process.env.PORT || 8000;
