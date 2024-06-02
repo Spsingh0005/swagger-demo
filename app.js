@@ -39,6 +39,7 @@ app.get("/users", async (req, res) => {
     res.json({ error });
   }
 });
+app.get("/favicon.ico", (req, res) => res.status(204));
 
 app.post("/users", async (req, res) => {
   const user = {
