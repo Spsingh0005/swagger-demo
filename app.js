@@ -119,7 +119,8 @@ app.post("/signup", async (req, res) => {
  * /users/{id}:
  *   get:
  *     summary: Get user by ID
- *     tags: [Auth]
+ *     tags:
+ *      - Auth
  *     parameters:
  *       - in: path
  *         name: id
