@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const Users = require("./models/model");
 const Products = require("./models/productsModel");
 const path = require("path");
+const User = require("./models/userSchema");
 
 // Mongoose connection string with password
 mongoose
@@ -55,6 +56,52 @@ app.get("/users", async (req, res) => {
   } catch (err) {
     console.error("Error fetching users:", err);
     res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+/**
+ * @swagger
+ * /signup:
+ *  post:
+ *    summary: User Signup
+ *    tags:[Auth]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json
+ *          schema:
+ *            type: object
+ *            required:
+ *              - username
+ *              - password
+ *            properties:
+ *              username:
+ *                type: string
+ *              password:
+ *                type: string
+ *  responses:
+ *    201:
+ *      description: User registered successfully
+ *    400:
+ *      description: Username already exists
+ *    500:
+ *      description: Internal server error
+ */
+
+app.post("/signup", async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const existingUser = await Users.findOne({ username });
+
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exist" });
+    }
+    const newUser = new User({ username, password });
+    await newUser.save();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 

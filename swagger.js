@@ -13,9 +13,9 @@ const options = {
       version: "1.0.0",
       description: "This is the custom API documentation description.",
       contact: {
-        name: "Your Name",
+        name: "Robin",
         url: "https://your-website.com",
-        email: "your-email@domain.com",
+        email: "robinsingh@gmail.com",
       },
     },
     servers: [
