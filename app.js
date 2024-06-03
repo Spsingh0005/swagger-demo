@@ -22,6 +22,18 @@ const hotelRoutes = require("./routes/hotel.route");
 const activityRoutes = require("./routes/activity.route");
 const bookingRoutes = require("./routes/booking.route");
 
+// Mongoose connection string with password
+mongoose
+  .connect(
+    "mongodb+srv://robinsingh199815:TydIYQpz1yiHQTEV@book-management-system.w4t4yqc.mongodb.net/Swagger-demo"
+  )
+  .then(() => {
+    console.log("Database connected successfully");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 // Swagger annotation for the GET /users endpoint
 /**
  * @swagger
@@ -50,6 +62,7 @@ const bookingRoutes = require("./routes/booking.route");
 app.get("/users", async (req, res) => {
   try {
     const users = await User.find();
+    console.log(users);
     res.json(users);
   } catch (err) {
     console.error("Error fetching users:", err);
@@ -173,4 +186,6 @@ const PORT = process.env.PORT || 3000;
 //   console.log(`Server running on ${PORT}`);
 // });
 
-module.exports = app;
+app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`);
+});
