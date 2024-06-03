@@ -17,11 +17,11 @@ app.get("/favicon.ico", (req, res) => res.status(204));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Import route files
-const userRoutes = require("./routes/user.route");
-const flightRoutes = require("./routes/flight.route");
-const hotelRoutes = require("./routes/hotel.route");
-const activityRoutes = require("./routes/activity.route");
-const bookingRoutes = require("./routes/booking.route");
+const userRoutes = require("./Routes/userroute");
+const flightRoutes = require("./Routes/flightroute");
+const hotelRoutes = require("./Routes/hotelroute");
+const activityRoutes = require("./Routes/activityroute");
+const bookingRoutes = require("./Routes/bookingroute");
 
 // Mongoose connection string with password
 mongoose
