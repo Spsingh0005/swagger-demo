@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const User = require("./models/user.model");
 const bodyParser = require("body-parser");
+const favicon = require("serve-favicon");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -180,6 +181,7 @@ app.use("/api/bookings", bookingRoutes);
 
 // Serve Swagger UI
 app.use("/", swaggerUi.serve, swaggerUi.setup(specs, swaggerUiOptions));
+app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 const PORT = process.env.PORT || 3000;
 // app.listen(PORT, () => {
