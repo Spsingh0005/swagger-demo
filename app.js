@@ -35,93 +35,6 @@ mongoose
     console.log(err);
   });
 
-// Swagger annotation for the GET /users endpoint
-/**
- * @swagger
- * /users:
- *   get:
- *     summary: Get a list of users
- *     tags:
- *       - Users
- *     responses:
- *       '200':
- *         description: A list of users
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   id:
- *                     type: string
- *                     example: 1
- *                   name:
- *                     type: string
- *                     example: John Doe
- */
-app.get("/users", async (req, res) => {
-  try {
-    const users = await User.find();
-    console.log(users);
-    res.json(users);
-  } catch (err) {
-    console.error("Error fetching users:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-/**
- * @swagger
- * /signup:
- *  post:
- *    summary: User Signup
- *    tags:
- *     - Auth
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            required:
- *              - username
- *              - password
- *            properties:
- *              username:
- *                type: string
- *              password:
- *                type: string
- *  responses:
- *    201:
- *      description: User registered successfully
- *    400:
- *      description: Username already exists
- *    500:
- *      description: Internal server error
- */
-app.post("/signup", async (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-
-  try {
-    // const existingUser = await Users.findOne({ username });
-
-    // if (existingUser) {
-    //   return res.status(400).json({ message: "User already exist" });
-    // }
-    const newUser = new User({ username, password });
-    await newUser.save(); // This is the save command
-    res.json({
-      message: "User created successfully",
-      newUser,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
-});
-
 // Get user by ID endpoint with Swagger annotations
 /**
  * @swagger
@@ -171,17 +84,19 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
-app.use("/api/users", userRoutes);
+// router.get("/", authController.getAllUsers);
+
+// Serve Swagger UI
+app.use("/", swaggerUi.serve, swaggerUi.setup(specs, swaggerUiOptions));
+app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+
+app.use("/", userRoutes);
 app.use("/api/flights", flightRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/activities", activityRoutes);
 app.use("/api/bookings", bookingRoutes);
 
 // Integration of swagger with express js
-
-// Serve Swagger UI
-app.use("/", swaggerUi.serve, swaggerUi.setup(specs, swaggerUiOptions));
-app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 const PORT = process.env.PORT || 3000;
 // app.listen(PORT, () => {

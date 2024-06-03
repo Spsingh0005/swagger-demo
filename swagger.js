@@ -20,8 +20,8 @@ const options = {
     },
     servers: [
       {
-        url: "https://swagger-demo-c1ff09885b2a.herokuapp.com/", // Update with your server URL
-        // url: "http://localhost:3000",
+        // url: "https://swagger-demo-c1ff09885b2a.herokuapp.com/",
+        url: "http://localhost:3000/",
         description: "Heroku server",
       },
     ],
@@ -31,16 +31,24 @@ const options = {
         description: "Operations related to users",
       },
       {
-        name: "Products",
-        description: "Operations related to products",
-      },
-      {
         name: "Auth",
         description: "Signup functionality",
       },
+      {
+        name: "Booking",
+        description: "Booking Management",
+      },
+      {
+        name: "Flight",
+        description: "Flight Management",
+      },
+      {
+        name: "Hotel",
+        description: "Hotel Management",
+      },
     ],
   },
-  apis: ["./app.js"], // Adjust this to include all files where APIs are defined
+  apis: ["./routes/*.js"], // Adjust this to include all files where APIs are defined
 };
 
 const swaggerUiOptions = {
