@@ -2,9 +2,10 @@ const express = require("express");
 const { specs, swaggerUi, swaggerUiOptions } = require("./swagger");
 const app = express();
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const path = require("path");
-const User = require("./models/user.model");
+const User = require("./models/userModel");
 const bodyParser = require("body-parser");
 const favicon = require("serve-favicon");
 
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.get("/favicon.ico", (req, res) => res.status(204));
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cors());
 
 // Import route files
 const userRoutes = require("./Routes/userroute");
@@ -22,6 +24,12 @@ const flightRoutes = require("./Routes/flightroute");
 const hotelRoutes = require("./Routes/hotelroute");
 const activityRoutes = require("./Routes/activityroute");
 const bookingRoutes = require("./Routes/bookingroute");
+
+app.use("/users", userRoutes);
+app.use("/api/flights", flightRoutes);
+app.use("/api/hotels", hotelRoutes);
+app.use("/api/activities", activityRoutes);
+app.use("/api/bookings", bookingRoutes);
 
 // Mongoose connection string with password
 mongoose
@@ -35,38 +43,6 @@ mongoose
     console.log(err);
   });
 
-// Get user by ID endpoint with Swagger annotations
-/**
- * @swagger
- * /users/{id}:
- *   get:
- *     summary: Get user by ID
- *     tags:
- *      - Auth
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *         description: The user ID
- *     responses:
- *       200:
- *         description: The user data
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 _id:
- *                   type: string
- *                 username:
- *                   type: string
- *       404:
- *         description: User not found
- *       500:
- *         description: Internal server error
- */
 app.get("/users/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -89,12 +65,6 @@ app.get("/users/:id", async (req, res) => {
 // Serve Swagger UI
 app.use("/", swaggerUi.serve, swaggerUi.setup(specs, swaggerUiOptions));
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
-
-app.use("/", userRoutes);
-app.use("/api/flights", flightRoutes);
-app.use("/api/hotels", hotelRoutes);
-app.use("/api/activities", activityRoutes);
-app.use("/api/bookings", bookingRoutes);
 
 // Integration of swagger with express js
 

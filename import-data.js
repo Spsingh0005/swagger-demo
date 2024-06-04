@@ -2,12 +2,12 @@ const fs = require("fs");
 const mongoose = require("mongoose");
 
 // Load Mongoose models
-const User = require("./models/user.model");
-const Flight = require("./models/flight.model");
-const Hotel = require("./models/hotel.model");
-const Activity = require("./models/activities.model");
-const Booking = require("./models/booking.model");
-const City = require("./models/city.model");
+const User = require("./models/userModel");
+// const Flight = require("./models/flightModel");
+// const Hotel = require("./models/hotelModel");
+// const Activity = require("./models/activitiesModel");
+// const Booking = require("./models/bookingModel");
+// const City = require("./models/cityModel");
 
 // Connect to your MongoDB database
 mongoose.connect(
@@ -23,17 +23,18 @@ fs.readFile("dev-data/demoData.txt", "utf8", (err, data) => {
 
   // Parse the JSON data
   const jsonData = JSON.parse(data);
+  console.log(jsonData.User);
 
   // Insert data into the database
   async function insertData() {
     try {
       // Insert data for each collection
-      await User.insertMany(jsonData.users);
-      await Flight.insertMany(jsonData.flights);
-      await Hotel.insertMany(jsonData.hotels);
-      await Activity.insertMany(jsonData.activities);
-      await Booking.insertMany(jsonData.bookings);
-      await City.insertMany(jsonData.cities);
+      await User.insertMany(jsonData.User);
+      // await Flight.insertMany(jsonData.Flight);
+      // await Hotel.insertMany(jsonData.Hotel);
+      // await Activity.insertMany(jsonData.Activity);
+      // await Booking.insertMany(jsonData.Booking);
+      // await City.insertMany(jsonData.City);
       console.log("Data inserted successfully");
     } catch (error) {
       console.error("Error inserting data:", error);

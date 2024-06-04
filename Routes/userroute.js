@@ -1,18 +1,17 @@
 const express = require("express");
-const router = express.Router();
+const app = express();
 const authController = require("../controllers/authController");
-const User = require("../models/user.model");
+const User = require("../models/userModel");
 
 // Define routes for user-related operations
 
 // Swagger annotation for the GET /users endpoint
 
-router.post("/", authController.createUser);
-router.get("/:userId", authController.getUserById);
-router.put("/:userId", authController.updateUser);
-router.delete("/:userId", authController.deleteUser);
-router.get("/users", authController.getAllUsers);
-router.post("/signup", authController.signup);
+// router.get("/:userId", authController.getUserById);
+// router.post("/", authController.createUser);
+// router.put("/:userId", authController.updateUser);
+// router.delete("/:userId", authController.deleteUser);
+// router.post("/signup", authController.signup);
 
 /**
  * @swagger
@@ -129,5 +128,46 @@ router.post("/signup", authController.signup);
  *       500:
  *         description: Error registering user
  */
+// Get user by ID endpoint with Swagger annotations
+/**
+ * @swagger
+ * /users/{id}:
+ *   get:
+ *     summary: Get user by ID
+ *     tags:
+ *      - Users
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The user ID
+ *     responses:
+ *       200:
+ *         description: The user data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                 username:
+ *                   type: string
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
 
-module.exports = router;
+app.get("/", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+module.exports = app;

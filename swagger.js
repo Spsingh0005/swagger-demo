@@ -20,8 +20,8 @@ const options = {
     },
     servers: [
       {
-        url: "https://swagger-demo-c1ff09885b2a.herokuapp.com/",
-        // url: "http://localhost:3000/",
+        // url: "https://swagger-demo-c1ff09885b2a.herokuapp.com/",
+        url: "http://localhost:3000/",
         description: "Heroku server",
       },
     ],

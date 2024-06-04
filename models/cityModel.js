@@ -33,6 +33,6 @@ const citySchema = new mongoose.Schema({
 });
 
 // Create a model using the schema
-const City = mongoose.model("NewYork", citySchema);
+const City = mongoose.model("City", citySchema);
 
 module.exports = City;

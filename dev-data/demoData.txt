@@ -1,6 +1,6 @@
 {
 
- "users" : [
+ "User" : [
   {
     "username": "john_doe",
     "email": "john.doe@example.com",
@@ -48,7 +48,7 @@
   }
 ]
 
-, "flights" : [
+, "Flight" : [
   {
     "flightNumber": "AA123",
     "airline": "American Airlines",
@@ -106,7 +106,7 @@
   }
 ]
 
-, "hotels" : [
+, "Hotel" : [
   {
     "hotelId": "HTL001",
     "name": "Grand Plaza Hotel",
@@ -159,7 +159,7 @@
   }
 ]
 
-, "activities" : [
+, "Activity" : [
   {
     "activityId": "ACT001",
     "name": "Statue of Liberty Tour",
@@ -207,7 +207,7 @@
   }
 ]
 
-, "bookings" : [
+, "Booking" : [
   {
     "bookingId": "BKG001",
     "userId": "USR001",
@@ -270,7 +270,7 @@
   }
 ]
 ,
- "cities" : [
+ "City" : [
   {
     "cityId": "CITY001",
     "name": "New York",
