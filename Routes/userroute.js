@@ -15,49 +15,9 @@ const User = require("../models/userModel");
 
 /**
  * @swagger
- * /users:
- *   get:
- *     summary: Get a list of users
- *     tags:
- *       - Users
- *     responses:
- *       '200':
- *         description: A list of users
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   userId:
- *                     type: string
- *                     example: 1
- *                   username:
- *                     type: string
- *                     example: john_doe
- *                   email:
- *                     type: string
- *                     example: john.doe@example.com
- *                   firstName:
- *                     type: string
- *                     example: John
- *                   lastName:
- *                     type: string
- *                     example: Doe
- *                   age:
- *                     type: integer
- *                     example: 30
- *                   gender:
- *                     type: string
- *                     example: male
- */
-
-/**
- * @swagger
  * components:
  *   schemas:
- *     Auth:
+ *     User:
  *       type: object
  *       required:
  *         - username
@@ -100,6 +60,23 @@ const User = require("../models/userModel");
  *         gender: male
  */
 
+// Get a list of users
+/**
+ * @swagger
+ * /api/users:
+ *   get:
+ *     summary: Get a list of users
+ *     tags:
+ *       - Users
+ *     responses:
+ *       '200':
+ *         description: A list of users
+ *         content:
+ *           application/json:
+ *             schema:
+ *                $ref: '#/components/schemas/User'
+ */
+
 /**
  * @swagger
  * tags:
@@ -131,7 +108,7 @@ const User = require("../models/userModel");
 // Get user by ID endpoint with Swagger annotations
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   get:
  *     summary: Get user by ID
  *     tags:
@@ -161,13 +138,42 @@ const User = require("../models/userModel");
  *         description: Internal server error
  */
 
-app.get("/", async (req, res) => {
-  try {
-    const users = await User.find();
-    res.json(users);
-  } catch (error) {
-    res.send(error);
-  }
-});
+// Get user by ID endpoint with Swagger annotations
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   put:
+ *     summary: Update user by ID
+ *     tags:
+ *      - Users
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The user ID
+ *     responses:
+ *       200:
+ *         description: The user data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                 username:
+ *                   type: string
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+
+app.get("/", authController.getAllUsers);
+app.get("/:id", authController.getUserById);
+app.put("/:id", authController.updateUser);
+app.delete("/:id", authController.deleteUser);
 
 module.exports = app;

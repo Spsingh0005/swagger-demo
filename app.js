@@ -25,40 +25,11 @@ const hotelRoutes = require("./Routes/hotelroute");
 const activityRoutes = require("./Routes/activityroute");
 const bookingRoutes = require("./Routes/bookingroute");
 
-app.use("/users", userRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/flights", flightRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/activities", activityRoutes);
 app.use("/api/bookings", bookingRoutes);
-
-// Mongoose connection string with password
-mongoose
-  .connect(
-    "mongodb+srv://robinsingh199815:TydIYQpz1yiHQTEV@book-management-system.w4t4yqc.mongodb.net/Swagger-demo"
-  )
-  .then(() => {
-    console.log("Database connected successfully");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-app.get("/users/:id", async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    const user = await User.findById(id);
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    res.status(200).json(user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
-});
 
 // router.get("/", authController.getAllUsers);
 
@@ -72,6 +43,18 @@ const PORT = process.env.PORT || 3000;
 // app.listen(PORT, () => {
 //   console.log(`Server running on ${PORT}`);
 // });
+
+// Mongoose connection string with password
+mongoose
+  .connect(
+    "mongodb+srv://robinsingh199815:TydIYQpz1yiHQTEV@book-management-system.w4t4yqc.mongodb.net/Swagger-demo"
+  )
+  .then(() => {
+    console.log("Database connected successfully");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);

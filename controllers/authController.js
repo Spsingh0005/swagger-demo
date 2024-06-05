@@ -1,20 +1,67 @@
 const User = require("../models/userModel");
 
-exports.createUser = () => {};
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
-    console.log(users);
     res.json(users);
-  } catch (err) {
-    console.error("Error fetching users:", err);
-    res.status(500).json({ error: "Internal server error" });
+  } catch (error) {
+    res.send(error);
   }
 };
 
-exports.getUserById = () => {};
-exports.updateUser = () => {};
-exports.deleteUser = () => {};
+// exports.createUser = () => {};
+
+exports.getUserById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+exports.updateUser = async (req, res) => {
+  const { id } = req.params;
+
+  console.log(req.body);
+
+  const user = await User.findByIdAndUpdate(
+    id,
+    req.body
+    // username: req.query.username,
+    // email: req.query.email,
+    // firstName: req.query.firstName,
+    // lastName: req.query.lastName,
+    // age: req.query.age,
+  );
+
+  res.status(200).json({
+    status: "success",
+    message: "Data updated successfully",
+  });
+};
+exports.deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await User.findByIdAndDelete(id);
+    res.status(200).json({
+      status: "success",
+      message: "User deleted successfully",
+    });
+  } catch (error) {
+    res.json({
+      message: "Something went wrong",
+    });
+  }
+};
 
 exports.signup = async (req, res) => {
   const { username, email, password, firstName, lastName, age, gender } =

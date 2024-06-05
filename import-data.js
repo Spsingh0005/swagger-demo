@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 
 // Load Mongoose models
 const User = require("./models/userModel");
-// const Flight = require("./models/flightModel");
-// const Hotel = require("./models/hotelModel");
-// const Activity = require("./models/activitiesModel");
-// const Booking = require("./models/bookingModel");
-// const City = require("./models/cityModel");
+const Flight = require("./models/flightModel");
+const Hotel = require("./models/hotelModel");
+const Activity = require("./models/activitiesModel");
+const Booking = require("./models/bookingModel");
+const City = require("./models/cityModel");
 
 // Connect to your MongoDB database
 mongoose.connect(
@@ -30,11 +30,11 @@ fs.readFile("dev-data/demoData.txt", "utf8", (err, data) => {
     try {
       // Insert data for each collection
       await User.insertMany(jsonData.User);
-      // await Flight.insertMany(jsonData.Flight);
-      // await Hotel.insertMany(jsonData.Hotel);
-      // await Activity.insertMany(jsonData.Activity);
-      // await Booking.insertMany(jsonData.Booking);
-      // await City.insertMany(jsonData.City);
+      await Flight.insertMany(jsonData.Flight);
+      await Hotel.insertMany(jsonData.Hotel);
+      await Activity.insertMany(jsonData.Activity);
+      await Booking.insertMany(jsonData.Booking);
+      await City.insertMany(jsonData.City);
       console.log("Data inserted successfully");
     } catch (error) {
       console.error("Error inserting data:", error);
