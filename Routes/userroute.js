@@ -170,9 +170,10 @@ const User = require("../models/userModel");
  *       500:
  *         description: Internal server error
  */
-
+app.get("/login", authController.login);
 app.get("/", authController.getAllUsers);
 app.get("/:id", authController.getUserById);
+app.post("/signup", authController.signup);
 app.put("/:id", authController.updateUser);
 app.delete("/:id", authController.deleteUser);
 
